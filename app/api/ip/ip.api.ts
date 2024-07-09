@@ -1,5 +1,5 @@
-import { NextFetchParams, IPApiResponse, WithNextParams } from '@/types';
 import { withNextParams } from '@/utils';
+import { NextFetchParams, IPApiResponse, WithNextParams } from '@/types';
 
 const apiUrl = process.env.NEXT_PUBLIC_IP_API_URL;
 const apiKey = process.env.NEXT_PUBLIC_IP_API_KEY;

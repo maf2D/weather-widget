@@ -4,10 +4,11 @@ import { createContext, FC, ReactNode, useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
 import { useResize, useUserTheme, Theme } from '@/hooks';
 import { WIDGET_SIZE, SCREEN_SIZE } from '@/constants';
+import { theme } from '@/utils';
 
 type ContextType = {
   widgetSize: WIDGET_SIZE | null;
-  theme: Theme;
+  themeColor: Theme;
 };
 
 type ProviderProps = {
@@ -16,20 +17,20 @@ type ProviderProps = {
 
 export const AppContext = createContext<ContextType>({
   widgetSize: null,
-  theme: 'light'
+  themeColor: 'light'
 });
 
 export const AppProvider: FC<ProviderProps> = ({ children }) => {
 
   // hooks
   const { windowWidth, windowHeight } = useResize();
-  const { theme } = useUserTheme();
+  const { themeColor } = useUserTheme();
   const { palette } = useTheme();
 
   // states
   const [widgetSize, setWidgetSize] = useState<WIDGET_SIZE | null>(null);
 
-  // effect that updates widget-container size based on a screen height and width
+  // effect that updates widget size based on a screen height and width
   useEffect(() => {
 
     // 2x2 by default
@@ -57,13 +58,13 @@ export const AppProvider: FC<ProviderProps> = ({ children }) => {
   // effect that updates mui theme mode based on a user theme (dark or light)
   // to use it in styled components dynamically
   useEffect(() => {
-    palette.mode = theme;
-  }, [theme]);
+    palette.mode = themeColor;
+  }, [palette, themeColor]);
 
   return (
     <AppContext.Provider value={{
       widgetSize,
-      theme
+      themeColor
     }}>
       {children}
     </AppContext.Provider>

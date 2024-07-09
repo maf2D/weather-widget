@@ -10,18 +10,18 @@ import './globals.css';
 
 type RootLayoutProps = {
   children: ReactNode;
-}
+};
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => (
   <html lang='en'>
     <body>
-    <AppRouterCacheProvider>
-      <ThemeProvider theme={theme}>
-        <AppProvider>
-            {children}
-        </AppProvider>
-      </ThemeProvider>
-    </AppRouterCacheProvider>
+      <AppRouterCacheProvider>
+        <ThemeProvider theme={theme}>
+          <AppProvider>
+              {children}
+          </AppProvider>
+        </ThemeProvider>
+      </AppRouterCacheProvider>
     </body>
   </html>
 );

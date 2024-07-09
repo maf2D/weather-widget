@@ -1,10 +1,10 @@
+import { withNextParams } from '@/utils';
 import {
   NextFetchParams,
   WeatherErrorResponse,
   WeatherResponse,
   WithNextParams
 } from '@/types';
-import { withNextParams } from '@/utils';
 
 const apiUrl = process.env.NEXT_PUBLIC_WEATHER_API_URL;
 const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;

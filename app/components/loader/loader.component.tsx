@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { LoaderContainer, Loader as L } from './loader.styles';
+import { LoaderContainer, Loader as LoaderStyled } from './loader.styles';
 
 type LoaderProps = {
   text?: string;
@@ -7,6 +7,6 @@ type LoaderProps = {
 
 export const Loader: FC<LoaderProps> = ({ text = 'Loading...' }) => (
   <LoaderContainer>
-    <L content={text} />
+    <LoaderStyled content={text} />
   </LoaderContainer>
 );

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export type Theme = 'light' | 'dark';
 
 export const useUserTheme = () => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const [themeColor, setThemeColor] = useState<Theme>('light');
 
   useEffect(() => {
 
@@ -12,17 +12,17 @@ export const useUserTheme = () => {
 
     // check for the dark theme
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
+      setThemeColor('dark');
     }
 
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const onThemeChange = (event: MediaQueryListEvent) => {
-      setTheme(event.matches ? 'dark' : 'light');
+      setThemeColor(event.matches ? 'dark' : 'light');
     };
 
     mediaQuery.addEventListener('change', onThemeChange);
     return () => mediaQuery.removeEventListener('change', onThemeChange);
   }, []);
 
-  return { theme };
+  return { themeColor };
 };

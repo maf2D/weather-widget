@@ -1,4 +1,4 @@
-// date: 2024-07-03, return: Monday, Tuesday ...
+// date: yyyy-mm-dd, return: Monday || Tuesday ...
 export const getDayNameByDate = (date: string) => {
   const d = new Date(date);
 
@@ -8,7 +8,7 @@ export const getDayNameByDate = (date: string) => {
   ).format(d);
 };
 
-// return: 00:00:00
+// return: hh:mm:ss
 export const getCurrentTime = () => {
   const now = new Date();
 
@@ -19,7 +19,7 @@ export const getCurrentTime = () => {
   return `${hours}:${minutes}:${seconds}`;
 };
 
-// return: July 6
+// return: Month dd
 export const getCurrentDate = () => {
   const now = new Date();
 

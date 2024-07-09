@@ -21,17 +21,17 @@ export const Description = styled(Typography)(({ theme }) => ({
   marginBottom: '0.5rem'
 }));
 
-export const TextSmall = styled(Typography)(({ theme }) => ({
-  color: theme.palette.white,
+export const TextSmall = styled(Typography)(({ theme: { palette } }) => ({
+  color: palette.white,
   marginBottom: '0.5rem',
 
   '& span.red': {
-    color: theme.palette.red,
+    color: palette.red,
     paddingRight: '0.3rem'
   },
 
   '& span.blue': {
-    color: theme.palette.blue,
+    color: palette.blue,
     paddingLeft: '0.3rem'
   }
 }));

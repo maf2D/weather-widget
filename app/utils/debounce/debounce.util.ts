@@ -12,5 +12,5 @@ export const debounce = (
     timer = setTimeout(() => {
       cb(...args);
     }, delay);
-  }
-}
+  };
+};

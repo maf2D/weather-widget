@@ -3,8 +3,8 @@
 import { Typography, Grid } from '@mui/material';
 import styled from '@emotion/styled';
 
-export const GridContainer = styled(Grid)(({ theme }) => ({
-  backgroundColor: theme.palette.darkGrey
+export const GridContainer = styled(Grid)(({ theme: { palette } }) => ({
+  backgroundColor: palette.mode === 'dark' ? palette.darkGrey : palette.white
 }));
 
 export const GridItem = styled(Grid)(({ theme }) => ({
@@ -15,12 +15,12 @@ export const GridItem = styled(Grid)(({ theme }) => ({
   backgroundColor: theme.palette.darkGrey
 }));
 
-export const Title = styled(Typography)(({ theme }) => ({
-  color: theme.palette.orange,
+export const Title = styled(Typography)(({ theme: { palette } }) => ({
+  color: palette.orange,
 
   paddingBottom: '1rem',
   marginBottom: '1rem',
-  borderBottom: '1px solid ' + theme.palette.lightGrey
+  borderBottom: '1px solid ' + palette.lightGrey
 }));
 
 export const Text = styled(Typography)(({ theme }) => ({

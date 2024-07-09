@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import { Title, Text, GridItem, GridContainer } from './one-day-weather.styles';
 import { WidgetProps } from '@/components';
+import { Title, Text, GridItem, GridContainer } from './one-day-weather.styles';
 
 export const OneDayWeather: FC<WidgetProps> = ({
   city,

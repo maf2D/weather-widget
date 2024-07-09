@@ -10,10 +10,7 @@ export const CityForm = () => (
       placeholder='Enter your city'
     />
 
-    <Button
-      type='submit'
-      disabled={false}
-    >
+    <Button type='submit'>
       Find
     </Button>
   </FormContainer>

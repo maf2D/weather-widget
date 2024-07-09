@@ -4,7 +4,6 @@ import { FC, useContext } from 'react';
 import { AppContext } from '@/contexts';
 import { WeatherResponse, ForecastDay } from '@/types';
 import { WIDGET_SIZE } from '@/constants';
-
 import {
   Loader,
   OneDayWeather,
