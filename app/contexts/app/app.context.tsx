@@ -4,7 +4,6 @@ import { createContext, FC, ReactNode, useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
 import { useResize, useUserTheme, Theme } from '@/hooks';
 import { WIDGET_SIZE, SCREEN_SIZE } from '@/constants';
-import { theme } from '@/utils';
 
 type ContextType = {
   widgetSize: WIDGET_SIZE | null;

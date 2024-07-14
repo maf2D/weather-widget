@@ -18,7 +18,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => (
       <AppRouterCacheProvider>
         <ThemeProvider theme={theme}>
           <AppProvider>
-              {children}
+            {children}
           </AppProvider>
         </ThemeProvider>
       </AppRouterCacheProvider>

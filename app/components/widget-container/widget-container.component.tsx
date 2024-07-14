@@ -4,12 +4,8 @@ import { FC, useContext } from 'react';
 import { AppContext } from '@/contexts';
 import { WeatherResponse, ForecastDay } from '@/types';
 import { WIDGET_SIZE } from '@/constants';
-import {
-  Loader,
-  OneDayWeather,
-  OneWeekWeather,
-  ThreeDaysWeather
-} from '@/components';
+import { Loader, OneDayWeather, OneWeekWeather, ThreeDaysWeather }
+  from '@/components';
 
 export type WidgetProps = {
   city: string;
@@ -30,10 +26,7 @@ type WidgetContainerProps = {
 
 export const WidgetContainer: FC<WidgetContainerProps> = ({ weatherData }) => {
 
-  // contexts
   const { widgetSize } = useContext(AppContext);
-
-  // if there is updated data in weather context - use it
   const { location, forecast, current } = weatherData;
 
   const widgetProps: WidgetProps = {
@@ -49,17 +42,14 @@ export const WidgetContainer: FC<WidgetContainerProps> = ({ weatherData }) => {
     humidity: current.humidity
   };
 
-  // show 2x2 component
   if (widgetSize === WIDGET_SIZE['2x2']) {
     return <OneDayWeather {...widgetProps} />;
   }
 
-  // show 4x2 component
   if (widgetSize === WIDGET_SIZE['4x2']) {
     return <ThreeDaysWeather {...widgetProps} />;
   }
 
-  // show 4x4 component
   if (widgetSize === WIDGET_SIZE['4x4']) {
     return <OneWeekWeather {...widgetProps} />;
   }

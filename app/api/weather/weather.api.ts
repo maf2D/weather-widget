@@ -1,17 +1,9 @@
-import { withNextParams } from '@/utils';
-import {
-  NextFetchParams,
-  WeatherErrorResponse,
-  WeatherResponse,
-  WithNextParams
-} from '@/types';
-
-const apiUrl = process.env.NEXT_PUBLIC_WEATHER_API_URL;
-const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY;
+import { fetchRequest } from '@/utils';
+import { WeatherResponse, WithNextParams } from '@/types';
 
 type WeatherApi = {
   getTodayWeather: WithNextParams<
-    (city: string) => Promise<Omit<WeatherResponse, 'forecast'>>
+    ({ city }: { city: string }) => Promise<Omit<WeatherResponse, 'forecast'>>
   >;
 
   getForecastWeather: WithNextParams<
@@ -19,41 +11,25 @@ type WeatherApi = {
   >;
 };
 
+const apiUrl = process.env.NEXT_PUBLIC_WEATHER_API_URL!;
+const apiKey = process.env.NEXT_PUBLIC_WEATHER_API_KEY!;
+
+const weatherApiRequest = fetchRequest({
+  baseUrl: apiUrl,
+  initialQueryParams: { key: apiKey }
+});
+
 export const weatherApi: WeatherApi = {
-  getTodayWeather: withNextParams(
-    (city) => weatherApiRequest(`/current.json?q=${city}`)
-  ),
+  getTodayWeather: ({ city }) => weatherApiRequest({
+    route: '/current.json',
+    queryParams: { q: city }
+  }),
 
-  getForecastWeather: withNextParams(
-    ({ city, days = 3 }) => weatherApiRequest(
-      `/forecast.json?q=${city}&days=${days}`
-    )
-  )
-};
-
-export const weatherApiRequest = async(
-  url: string,
-  nextFetchParams?: NextFetchParams
-) => {
-  try {
-    const fullUrl = `${apiUrl}${url}`;
-    const response = await fetch(
-      `${fullUrl}&key=${apiKey}`,
-      nextFetchParams || undefined
-    );
-
-    if (!response.ok) {
-      const { error } = await response.json() as WeatherErrorResponse;
-
-      throw new Error(error.message);
+  getForecastWeather: ({ city, days = 3 }) => weatherApiRequest({
+    route: '/forecast.json',
+    queryParams: {
+      q: city,
+      days: days.toString()
     }
-
-    return response.json();
-  } catch(err) {
-    if (err instanceof Error) {
-      throw new Error(err.message);
-    } else {
-      throw new Error('An unknown error occurred');
-    }
-  }
+  })
 };
